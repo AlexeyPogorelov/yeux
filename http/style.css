@@ -26,7 +26,7 @@
 	color: #000;
 	display: block;
 	font-size: 12px;
-	font-family: HelveticaNeueRoman;
+	font-family: HelveticaNeueRoman, sans-serif;
 	margin: 0px auto;
 	outline: none;
 	position: relative;
@@ -69,7 +69,7 @@
 	color: white;
 	/*display: block;*/
 	font-size: 12px;
-	font-family: HelveticaNeueBold;
+	font-family: HelveticaNeueBold, sans-serif;
 	margin-right: 10px;
 	margin-bottom: 10px;
 	padding: 10px;
@@ -146,7 +146,7 @@ section#partners button {
 	color: #000;
 	display: block;
 	font-size: 12px;
-	font-family: HelveticaNeueRoman;
+	font-family: HelveticaNeueRoman, sans-serif;
 	margin: 20px auto;
 	outline: none;
 	position: relative;
@@ -238,7 +238,7 @@ section#progress .content-slider .editButtonAdmin.add {
 	color: #000;
 	/*display: block;*/
 	font-size: 12px;
-	font-family: HelveticaNeueRoman;
+	font-family: HelveticaNeueRoman, sans-serif;
 	margin: 0 20px;
 	margin-bottom: 20px;
 	/*margin-top: 4%;*/
@@ -289,10 +289,10 @@ section#pre-footer input {
 	background: black;
 }
 html {
-  font-family: HelveticaNeueMedium;
+  font-family: HelveticaNeueMedium, sans-serif;
 }
 body {
-  font-family: HelveticaNeueMedium;
+  font-family: HelveticaNeueMedium, sans-serif;
   margin: 0;
   overflow: hidden;
 }
@@ -323,7 +323,7 @@ a:active, a:hover {
 }
 h2 {
 	font-size: 60px;
-	font-family: HelveticaNeueUltraLight;
+	font-family: HelveticaNeueUltraLight, sans-serif;
 	font-weight: 300;
 	line-height: 70px;
 }
@@ -362,7 +362,7 @@ button.but {
 	padding: 6px 37px;
 	display: block;
 	font-size: 15px;
-	font-family: MyriadProRegular;
+	font-family: MyriadProRegular, sans-serif;
 	outline: none;
 	overflow: hidden;
 	position: relative;
@@ -636,6 +636,22 @@ section#progress .right {
 		        transform: rotate(160deg) scale(1.4, 1.4) translate(-50%,0);
 	}
 }
+@-webkit-keyframes oneTwoBack {
+	0% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+@keyframes oneTwoBack {
+	0% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
 .main-intro-animation {
 	will-change: initial;
 	background-color: rgba(0,0,0,1);
@@ -675,6 +691,14 @@ section#progress .right {
 	        transform: rotate(-180deg);
 	-webkit-animation-name: oneTwo;
 	        animation-name: oneTwo;
+	-webkit-animation-duration: 0.8s;
+	        animation-duration: 0.8s;
+	-webkit-animation-iteration-count: 1;
+	        animation-iteration-count: 1;
+}
+.main-intro-animation.oneTwo .back {
+	-webkit-animation-name: oneTwoBack;
+	        animation-name: oneTwoBack;
 	-webkit-animation-duration: 0.8s;
 	        animation-duration: 0.8s;
 	-webkit-animation-iteration-count: 1;
@@ -761,6 +785,10 @@ section#intro-1 video {
 video {
 	/*position: fixed;*/
 	/*display: block;*/
+}
+
+#main #particles-js {
+	opacity: 0;
 }
 
 /*/ CUSTOM /*/
@@ -864,7 +892,7 @@ video {
 	background-color: rgba(0,0,0,0.4);
 	border-radius: 2px;
 	color: white;
-	font-family: HelveticaNeueUltraLight;
+	font-family: HelveticaNeueUltraLight, sans-serif;
 	font-weight: 300;
 	padding: 20px;
 	position: absolute;
@@ -893,17 +921,34 @@ video {
 	position: relative;
 	float: left;
 	height: 100%;
+	/*background: #000;*/
 }
 #portfolioLightbox .slides-holder .image-holder .progress {
+	background: #fff;
+	opacity: 1;
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	z-index: 4;
+}
+#portfolioLightbox .slides-holder .image-holder .progress .icon {
 	background-position: 50% 50%;
 	background-repeat: no-repeat;
+	background-color: #fff;
 	background-image: url('img/icons/progress.png');
 	opacity: .5;
 	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin-left: -64px;
+	margin-right: -64px;
 	height: 128px;
 	width: 128px;
   -webkit-animation: rotating-function 1.25s linear infinite;
           animation: rotating-function 1.25s linear infinite;
+          z-index: 5;
 }
 @-webkit-keyframes rotating-function {
   from {
@@ -921,9 +966,23 @@ video {
     transform: rotate(360deg);
   }
 }
+#portfolioLightbox .image-holder {
+	position: relative;
+}
 #portfolioLightbox .image-holder img {
+	opacity: 0;
 	width: 100%;
 	/*object-fit: cover;*/
+}
+#portfolioLightbox .image-holder .realImage {
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-size: contain;
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	height: 100%;
+	width: 100%;
 }
 #portfolioLightbox .buttonsHolder {
 	position: absolute;
@@ -1003,7 +1062,7 @@ video {
 	text-transform: lowercase;
 	letter-spacing: 2px;
 	font-weight: 400;
-	font-family: HelveticaNeueLight;
+	font-family: HelveticaNeueLight, sans-serif;
 	text-shadow: 0 0 1px rgba(255,255,255,0.3);
 	font-size: 16px;
 	text-align: center;
@@ -1125,7 +1184,7 @@ button.btn-navbar.active span.icon-bar {
 button.btn-navbar.active span.icon-bar:first-child {
 	position: relative;
 	left: 6px;
-	top: 1px;
+	top: 2px;
 	width: 10px;
 	-webkit-transform: rotate(90deg);
 	    -ms-transform: rotate(90deg);
@@ -1134,7 +1193,7 @@ button.btn-navbar.active span.icon-bar:first-child {
 button.btn-navbar.active span.icon-bar:last-child {
 	position: relative;
 	left: 6px;
-	top: -1px;
+	top: -2px;
 	width: 10px;
 	-webkit-transform: rotate(-90deg);
 	    -ms-transform: rotate(-90deg);
@@ -1197,7 +1256,7 @@ section#main p {
 	color: #737373;
 	line-height: 14px;
 	font-size: 10px;
-	font-family: HelveticaNeueRoman;
+	font-family: HelveticaNeueRoman, sans-serif;
 }
 #intro-1 .vertical-middle {
 	display: table;
@@ -1224,7 +1283,7 @@ section#intro-gallery .image-holder:nth-child(3) img {
 section#partners p {
 	color: #737373;
 	font-size: 13px;
-	font-family: MyriadProRegular;
+	font-family: MyriadProRegular, sans-serif;
 	line-height: 14px;
 	height: 130px;
 	margin: 0 auto;
@@ -1327,7 +1386,7 @@ section#progress .slider-info {
 	height: 100px;
 }
 section#progress .slider-info h3.slide-name {
-	font-family: HelveticaNeueUltraLight;
+	font-family: HelveticaNeueUltraLight, sans-serif;
 	font-size: 25px;
 	text-align: center;
 	padding: 20px 0;
@@ -1339,7 +1398,7 @@ section#progress .right {
 }
 section#progress p {
 	color: #737373;
-	font-family: MyriadProRegular;
+	font-family: MyriadProRegular, sans-serif;
 	font-size: 12px;
 	line-height: 14px;
 }
@@ -1374,7 +1433,7 @@ section#portfolio h2 {
 section#portfolio p {
 	padding-bottom: 10px;
 	font-size: 13px;
-	font-family: HelveticaNeueLight;
+	font-family: HelveticaNeueLight, sans-serif;
 	line-height: 14px;
 	width: 50%;
 	margin: 0 auto;
@@ -1386,7 +1445,7 @@ section#portfolio .button-main {
 	color: #000;
 	display: block;
 	font-size: 12px;
-	font-family: HelveticaNeueRoman;
+	font-family: HelveticaNeueRoman, sans-serif;
 	margin: 0 auto;
 	margin-bottom: 8%;
 	margin-top: 4%;
@@ -1458,7 +1517,7 @@ section#portfolio .portfolio-item {
 	overflow: hidden;
 	position: relative;
 	float: left;
-	font-family: HelveticaNeueUltraLight;
+	font-family: HelveticaNeueUltraLight, sans-serif;
 	height: 97px;
 	width: 20%;
 }
@@ -1562,7 +1621,7 @@ section#contact input {
 	border-bottom: 1px solid #7f7f7f;
 	color: #a3a3a3;
 	display: block;
-	font-family: HelveticaNeueLightItalic;
+	font-family: HelveticaNeueLightItalic, sans-serif;
 	font-size: 17px;
 	outline: none;
 	margin-bottom: 26px;
@@ -1576,7 +1635,7 @@ section#contact textarea#message {
 	background-image: url('img/input-background.png');
 	border: none;
 	color: #a3a3a3;
-	font-family: HelveticaNeueLightItalic;
+	font-family: HelveticaNeueLightItalic, sans-serif;
 	font-size: 17px;
 	line-height: 33px;
 	overflow: hidden;
@@ -1593,7 +1652,7 @@ section#contact span.info {
 	color: #a3a3a3;
 	text-align: right;
 	float: right;
-	font-family: HelveticaNeueLight;
+	font-family: HelveticaNeueLight, sans-serif;
 	width: 50%;
 }
 section#pre-footer {
@@ -1628,7 +1687,7 @@ section#pre-footer h2 {
 	color: #737373;
 	text-align: center;
 	text-transform: uppercase;
-	font-family: HelveticaNeueUltraLight;
+	font-family: HelveticaNeueUltraLight, sans-serif;
 	font-size: 25px;
 	line-height: 65px;
 	padding-bottom: 0px;
@@ -1649,7 +1708,7 @@ section#pre-footer .map-holder {
 section#pre-footer .map-holder .content-holder {
 	color: #fff;
 	font-size: 12px;
-	font-family: HelveticaNeueUltraLight;
+	font-family: HelveticaNeueUltraLight, sans-serif;
 	position: absolute;
 	top: 20%;
 	left: 18%;

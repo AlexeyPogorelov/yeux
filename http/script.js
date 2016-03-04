@@ -22,7 +22,7 @@ $(window).load(function(){
 	// });
 
 	/* PARALLAX */
-	$(window).scroll(function () {
+	$(window).on('scroll', function () {
 		var scrollTop = $(window).scrollTop();
 		var scrollVisible = scrollTop + windowHeight;
 		/* PARALLAX gallerey */
@@ -317,8 +317,6 @@ $(window).load(function(){
 	$('textarea').focusout(function() {
 		$(document).on('keydown', onKeyDown);
 	});
-
-
 
 	/* MENU */
 	pagesState.menuItems = [];
@@ -960,12 +958,21 @@ var portfolioLightbox = {
 		return controls;
 	},
 	createSlider: function (slides) {
+		// TODO fix it
+		// alert();
 		var slidesHolder = $('<div>')
 			.addClass('slides-holder')
 			.addClass('clearfix');
 		for (var i = 0; i < slides.length; i++) {
 			var slide = $('<div>')
 				.addClass('image-holder');
+			var fitedImage = $('<div>')
+				.addClass('realImage')
+				.appendTo(slide)
+				.css({
+					'background-image': 'url(' + host.portfolioOriginals + slides[i].image + ')',
+					'opacity': 0
+				});
 			var image = $('<img>')
 				.attr('src', host.portfolioOriginals + slides[i].image)
 				.appendTo(slide)
@@ -973,11 +980,11 @@ var portfolioLightbox = {
 					'opacity': 0
 				})
 				.load(function() {
-					$(this).data('height', this.height);
-					$(this).data('width', this.width);
-					$(this).data('size', true);
-					portfolioLightbox.fitImage(this);
-					$(this).animate({
+					// $(this).data('height', this.height);
+					// $(this).data('width', this.width);
+					// $(this).data('size', true);
+					// portfolioLightbox.fitImage(this);
+					$(this).siblings('.realImage').animate({
 						'opacity': 1
 					});
 					$(this).siblings('.progress').animate({
@@ -986,13 +993,17 @@ var portfolioLightbox = {
 						$(this).detach();
 					});
 				});
+			if (image.get(0).naturalWidth) {
+				fitedImage.animate({
+					'opacity': 1
+				});
+			}
 			var $progress = $('<div>')
 				.addClass('progress')
 				.css({
-					'opacity': 0,
-					'top': windowHeight / 2 - 96,
-					'left': windowWidth / 2 - 64
+					'opacity': 0
 				})
+				.append('<div class="icon">')
 				.appendTo(slide)
 				.animate({'opacity': .2}, 100);
 			slide.appendTo(slidesHolder);
@@ -1163,6 +1174,7 @@ $.fn.animateRotate = function(angle, duration, easing, complete) {
 var introAnimation = (function () {
 	var speed = 800;
 	var $bg = $('<div>').addClass('main-intro-animation').append( $('<div>').attr('id', 'particles-js').addClass('particles-js') );
+	var $back = $('<div>').addClass('back').appendTo( $bg );
 	var $wg = $('<div>').addClass('intro1-animation');
 	var $white = $('.pre-loader-main');
 	var $logo = $('.logo-main-holder');
@@ -1180,6 +1192,9 @@ var introAnimation = (function () {
 				$bg.css({'opacity': 0});
 				$('.pre-loader-main').css('zIndex', 999).animate({opacity: 0}, 1500, function () {
 					$(this).detach();
+					$back.css({
+						'opacity': 0.8
+					});
 					$logo.css({
 						'opacity': 1
 					});
@@ -1208,6 +1223,9 @@ var introAnimation = (function () {
 			} else {
 				$('.pre-loader-main').animate({opacity: 0}, 1500, function () {
 					$(this).detach();
+					$back.css({
+						'opacity': 0.8
+					});
 					$logo.css({
 						'opacity': 1
 					});
@@ -1243,6 +1261,11 @@ var introAnimation = (function () {
 				'zIndex': 9999,
 				'opacity': 0
 			});
+			$back.animate({
+				'opacity': 0
+			}, 1400).animate({
+				'opacity': 0.8
+			}, 1400);
 			$bg.one("animationend webkitAnimationEnd",
 			function(event) {
 				if (bgVideo.exist) {
@@ -1250,6 +1273,8 @@ var introAnimation = (function () {
 						'opacity': 1
 					}, 1600);
 				};
+				// console.log(this)
+				// $(this).addClass('ready');
 				$logo.animate({
 					'opacity': 1
 				}, 1200, 'swing');
@@ -1276,7 +1301,7 @@ var introAnimation = (function () {
 				bgVideo.dom.$clone.stop(true, true).css({
 					'opacity': 0
 				});
-				console.log(bgVideo.dom.$video);
+				// console.log(bgVideo.dom.$video);
 				bgVideo.dom.$video.stop(false, false).animate({
 					'opacity': 0
 				});
@@ -1379,8 +1404,9 @@ var bgVideo = {
 		// });
 		//this.dom.$video[0].play();
 		//this.dom.$clone[0].play();
-		this.dom.$video.on('canplay loadeddata', function() {
-			this.play();
+		// this.dom.$video.on('canplay loadeddata', function() {
+		this.dom.$video.on('load', function() {
+			// this.play();
 			$(this).animate({
 				'opacity': 1
 			});
