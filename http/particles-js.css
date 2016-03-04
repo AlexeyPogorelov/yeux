@@ -1,0 +1,28 @@
+
+
+#particles-js{
+  width: 100%;
+  height: 100%;
+  /*background-color: #000;*/
+  /*background-image: url(img/icons/123.png);*/
+  opacity: 1;
+
+}
+@keyframes example {
+  0%   {background-position: 0% 0%;}
+  100%  {background-position: 0% 250000000%;}
+}
+
+.main-intro-animation {
+  background-image: url(img/icons/123.png);
+  background-position: 0% 0%;
+  background-repeat: repeat;
+  animation-name: example;
+  animation-duration: 45999999s;
+  animation-iteration-count: infinite;
+}
+@media (max-width: 400px) {
+  .main-intro-animation {
+    animation-duration: 49999999s;
+  }
+}

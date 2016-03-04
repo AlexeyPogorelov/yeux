@@ -1,0 +1,21 @@
+
+-translate arrows and progress to SVG than add shadow on it
+-fix video in intro
+
+-mobile
+	-menu scrolling
+
+-- TEST ON FF & IE!
+
+- !!!   API   !!!
+-add if else on get every for
+-load snippets (static text)
+-create pre-loader in main page
+-map create pin
+
+-optimize parallax
+-history back  not work
+-fix portfolio paginator (reorder divs)
+
+
+height min button addd portfolio
