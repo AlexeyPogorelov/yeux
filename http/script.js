@@ -856,6 +856,10 @@ var lexPortfolio = {
 var portfolioLightbox = {
 	'lightboxId': 'portfolioLightbox',
 	'icons': ['img/icons/back-icon-main.png', 'img/icons/farword-icon-main.png'],
+	'touchState': {
+		touchStart: {},
+		touchEnd: {}
+	},
 	open: function (id) {
 		if (!this.lightbox) {
 			this.createBox(id);
@@ -886,6 +890,51 @@ var portfolioLightbox = {
 			.animate({
 				opacity: '1'
 			}, 'fast', this.loadPortfolio.bind(this, id));
+		//
+		this.lightbox.on('touchstart', function (e) {
+
+			portfolioLightbox.touchState.touchStart.timeStamp = e.timeStamp;
+
+		});
+		this.lightbox.on('touchmove', function (e) {
+
+			e.preventDefault();
+			portfolioLightbox.touchState.touchEnd.xPos = e.originalEvent.touches[0].clientX;
+			portfolioLightbox.touchState.touchEnd.yPos = e.originalEvent.touches[0].clientY;
+
+			if (!portfolioLightbox.touchState.touchStart.xPos) {
+				portfolioLightbox.touchState.touchStart.xPos = portfolioLightbox.touchState.touchEnd.xPos;
+			}
+			if (!portfolioLightbox.touchState.touchStart.yPos) {
+				portfolioLightbox.touchState.touchStart.yPos = portfolioLightbox.touchState.touchEnd.yPos;
+			}
+
+		});
+		this.lightbox.on('touchend', function (e) {
+			if (pagesState.animatedBool) {
+				return;
+			}
+			var distance = 70,
+				speed = 200,
+				deltaX = portfolioLightbox.touchState.touchEnd.xPos - portfolioLightbox.touchState.touchStart.xPos,
+				deltaY = portfolioLightbox.touchState.touchEnd.yPos - portfolioLightbox.touchState.touchStart.yPos;
+
+			if (deltaX > distance || deltaX < -distance) {
+				if (deltaX < 0) {
+					portfolioLightbox.nextSlide();
+				} else {
+					portfolioLightbox.prevSlide();
+				}
+			}
+
+			portfolioLightbox.touchState.touchEnd.xPos = null;
+			portfolioLightbox.touchState.touchEnd.yPos = null;
+			portfolioLightbox.touchState.touchStart.xPos = null;
+			portfolioLightbox.touchState.touchStart.yPos = null;
+			deltaX = null;
+			deltaY = null;
+
+		});
 	},
 	loadPortfolio: function (id, change) {
 		if (change) {
@@ -958,8 +1007,6 @@ var portfolioLightbox = {
 		return controls;
 	},
 	createSlider: function (slides) {
-		// TODO fix it
-		// alert();
 		var slidesHolder = $('<div>')
 			.addClass('slides-holder')
 			.addClass('clearfix');
@@ -1040,9 +1087,9 @@ var portfolioLightbox = {
 	resize: function () {
 		portfolioLightbox.$slidesHolder.width(windowWidth * portfolioLightbox.slidesCount);
 		portfolioLightbox.$slidesHolder.find('.image-holder').width(windowWidth).height(windowHeight - 60);
-		portfolioLightbox.$slidesHolder.find('img').each(function(){
-			portfolioLightbox.fitImage(this);
-		});
+		// portfolioLightbox.$slidesHolder.find('img').each(function(){
+		// 	portfolioLightbox.fitImage(this);
+		// });
 		portfolioLightbox.toSlide(portfolioLightbox.currentSlide, true);
 	},
 	prevPortfolio: function () {
@@ -1160,16 +1207,16 @@ function buttonNext () {
 	scrollPages.nextPage();
 }
 $.fn.animateRotate = function(angle, duration, easing, complete) {
-  var args = $.speed(duration, easing, complete);
-  var step = args.step;
-  return this.each(function(i, e) {
-    args.complete = $.proxy(args.complete, e);
-    args.step = function(now) {
-      $.style(e, 'transform', 'rotate(' + now + 'deg)');
-      if (step) return step.apply(e, arguments);
-    };
-    $({deg: 0}).animate({deg: angle}, args);
-  });
+	var args = $.speed(duration, easing, complete);
+	var step = args.step;
+	return this.each(function(i, e) {
+		args.complete = $.proxy(args.complete, e);
+		args.step = function(now) {
+		  $.style(e, 'transform', 'rotate(' + now + 'deg)');
+		  if (step) return step.apply(e, arguments);
+		};
+		$({deg: 0}).animate({deg: angle}, args);
+	});
 };
 var introAnimation = (function () {
 	var speed = 800;
