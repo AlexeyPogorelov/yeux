@@ -584,7 +584,7 @@ var lexPortfolio = {
 	chacheDom: function () {
 		this.$container = $(lexPortfolio.container);
 		this.$slidesHolder = this.$container.find(this.slidesHolder);
-		this.$image;
+		// this.$image;
 		this.$header = $(this.header);
 		this.$desc = $(this.desc);
 		this.$controls = this.$container.find(this.controls);
@@ -613,7 +613,7 @@ var lexPortfolio = {
 				coverImg += lexPortfolio.cont[i].cover.image;
 			} else{
 				coverImg += defImage;
-			};
+			}
 			var img = $('<img>')
 				.attr('src', coverImg)
 				.appendTo(holder);
@@ -661,7 +661,7 @@ var lexPortfolio = {
 			lexPortfolio.currentSlide = 0;
 		} else {
 			lexPortfolio.toSlide(this.currentSlide);
-		};
+		}
 	},
 	toSlide: function (id, resize) {
 		this.$slidesHolder.stop(true, true).animate({
@@ -674,7 +674,7 @@ var lexPortfolio = {
 				.attr('class', lexPortfolio.cls[0])
 				.eq(id)
 				.attr('class', lexPortfolio.cls[1])
-		};
+		}
 	},
 	createButtons: function () {
 		if (this.slidesCount > this.maxSlides) {
@@ -684,17 +684,17 @@ var lexPortfolio = {
 					but.addClass(this.cls[0]);
 				} else {
 					but.addClass(this.cls[1]);
-				};
+				}
 				but.attr('slide-id', i);
 				but.on('click', lexPortfolio.buttonClick);
 				but.appendTo(this.$controls);
-			};
-		};
+			}
+		}
 	},
 	buttonClick: function () {
 		if ($(this).attr('slide-id') != lexPortfolio.currentSlide) {
 			lexPortfolio.toSlide($(this).attr('slide-id'));
-		};
+		}
 	},
 	portfolioClick: function () {
 		var id = $(this).attr('portfolio-id');
@@ -709,7 +709,7 @@ var lexPortfolio = {
 		} else {
 			this.$slidesHolder.width(this.containerWidth * this.holderCount / 2);
 			this.$portfolio.width(this.containerWidth / (this.holderCount / 2));
-		};
+		}
 		this.toSlide(this.currentSlide, true);
 	}
 };
@@ -780,7 +780,7 @@ var lexPortfolio = {
 							}
 							pagesState.animatedBool = false;
 						});
-				};
+				}
 			},
 			nextPage: function () {
 				pagesState.prevPage = pagesState.currentPage;
@@ -809,7 +809,7 @@ var lexPortfolio = {
 						id = 0;
 						pagesState.currentPage = 0;
 					}
-				};
+				}
 				pagesState.prevPage = 0;
 				return id;
 			},
@@ -863,7 +863,7 @@ var portfolioLightbox = {
 	open: function (id) {
 		if (!this.lightbox) {
 			this.createBox(id);
-		};
+		}
 		cacheDom.$navButton.animate({'right': -26});
 		this.currentPortfolio = id;
 		pagesState.lightbox = 'portfolio';
@@ -954,7 +954,7 @@ var portfolioLightbox = {
 			});
 			this.animationOpen();
 			this.resize();
-		};
+		}
 		window.location.hash = 'portfolio=' + lexPortfolio.cont[id].alias;
 	},
 	animationOpen: function () {
@@ -966,7 +966,7 @@ var portfolioLightbox = {
 	generateHtml: function (id) {
 		if (this.$contentHolder) {
 			portfolioLightbox.$contentHolder.detach();
-		};
+		}
 		var html = $('<div>')
 			.addClass('content-holder')
 			.css('left', '-50%');
@@ -987,7 +987,7 @@ var portfolioLightbox = {
 			.addClass('controls');
 		var prevPortfolio = $('<div>')
 			.addClass('prev-portfolio')
-			.html(lang.prevPortfolio[1])
+			.append( $('<span>').html(lang.prevPortfolio[1]) )
 			.append('<img>')
 			.one('click', portfolioLightbox.prevPortfolio)
 			.appendTo(controls);
@@ -997,7 +997,7 @@ var portfolioLightbox = {
 			.appendTo(controls);
 		var nextPortfolio = $('<div>')
 			.addClass('next-portfolio')
-			.html(lang.nextPortfolio[1])
+			.append( $('<span>').html(lang.nextPortfolio[1]) )
 			.append('<img>')
 			.on('click', portfolioLightbox.nextPortfolio)
 			.appendTo(controls);
@@ -1054,7 +1054,7 @@ var portfolioLightbox = {
 				.appendTo(slide)
 				.animate({'opacity': .2}, 100);
 			slide.appendTo(slidesHolder);
-		};
+		}
 		this.slidesCount = slides.length;
 		this.currentSlide = 0;
 		this.$slidesHolder = slidesHolder;
@@ -1071,7 +1071,7 @@ var portfolioLightbox = {
 			$(img).data('width', imageWidth);
 			$(img).data('height', imageHeight);
 			$(img).data('size', true);
-		};
+		}
 		if (windowHeight - 60 - imageHeight > windowWidth - imageWidth) {
 			$(img).css({
 				'width': 'auto',
@@ -1082,7 +1082,7 @@ var portfolioLightbox = {
 				'width': '100%',
 				'height': 'auto'
 			});
-		};
+		}
 	},
 	resize: function () {
 		portfolioLightbox.$slidesHolder.width(windowWidth * portfolioLightbox.slidesCount);
@@ -1099,7 +1099,7 @@ var portfolioLightbox = {
 			newSlide = id - 1;
 		} else {
 			newSlide = lexPortfolio.cont.length - 1;
-		};
+		}
 		portfolioLightbox.$prevPortfolioButton.off();
 		portfolioLightbox.$slidesHolder.animate({
 			'opacity': '0'
@@ -1122,7 +1122,7 @@ var portfolioLightbox = {
 			newSlide = id + 1;
 		} else {
 			newSlide = 0;
-		};
+		}
 		portfolioLightbox.$nextPortfolioButton.off();
 		portfolioLightbox.$slidesHolder.animate({
 			'opacity': '0'
@@ -1153,7 +1153,8 @@ var portfolioLightbox = {
 				});
 				this.nextSlideButton.animate({
 					'opacity': 0.4
-				});};
+				});
+			}
 		} else {
 			var prevSlide = this.prevSlideButton = $('<div>')
 				.addClass('prevSlide')
@@ -1168,9 +1169,9 @@ var portfolioLightbox = {
 				nextSlide.css({
 					'opacity': 0
 				});
-			};
+			}
 			return prevSlide.add(nextSlide);
-		};
+		}
 	},
 	toSlide: function (id, resize) {
 		this.$slidesHolder.stop(false, false).animate({
@@ -1184,7 +1185,7 @@ var portfolioLightbox = {
 		} else{
 			this.currentSlide = this.slidesCount - 1;
 			this.toSlide(this.currentSlide);
-		};
+		}
 	},
 	nextSlide: function () {
 		if (++this.currentSlide >= this.slidesCount) {
@@ -1192,17 +1193,17 @@ var portfolioLightbox = {
 			this.currentSlide = 0;
 		} else{
 			this.toSlide(this.currentSlide);
-		};
+		}
 	},
 	getIdFromAlias: function (portfolios) {
 		var curHash = window.location.hash.substr(11);
 		for (var i = 0; i < portfolios.length; i++) {
 			if (portfolios[i].alias == curHash) {
 				return i;
-			};
-		};
+			}
+		}
 	}
-}
+};
 function buttonNext () {
 	scrollPages.nextPage();
 }

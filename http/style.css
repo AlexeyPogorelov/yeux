@@ -2110,6 +2110,10 @@ ul ul, ol ul, ul ol, ol ol {
 		text-align: center;
 	}
 
+	section#progress .right p {
+		text-align: center;
+	}
+
 	section#main .right {
 		margin-bottom: 30px;
 		float: right;
@@ -2124,6 +2128,18 @@ ul ul, ol ul, ul ol, ol ol {
 		padding-top: 40px;
 	}
 
+	section#main .right, section#partners .right, section#progress .right {
+		text-align: center;
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+
+	section#portfolio p {
+		padding-left: 10px;
+		padding-right: 10px;
+		width: 100%;
+	}
+
 	section#pre-footer h2 {
 		display: none;
 	}
@@ -2133,6 +2149,25 @@ ul ul, ol ul, ul ol, ol ol {
 		padding-top: 40px;
 		padding-bottom: 40px;
 	}
+
+	section#contact input {
+		width: 100%;
+	}
+
+	section#contact span.info {
+		margin-top: 20px;
+		width: 100%;
+	}
+
+	section#contact button.button-send {
+		margin-top: 20px;
+		width: 100%;
+	}
+
+	#nav-wrapper-main {
+		max-width: 100%;
+	}
+
 	.scroll-bottom {
 		display: none;
 	}
@@ -2147,6 +2182,21 @@ ul ul, ol ul, ul ol, ol ol {
 		float: none;
 		position: static;
 	}
+
+	#portfolioLightbox .controls .next-portfolio span,
+	#portfolioLightbox .controls .prev-portfolio span {
+		display: none;
+		/*font-size: 12px;*/
+		/*width: 10px;*/
+	}
+
+	#portfolioLightbox .content-holder {
+		left: 0 !important;
+		top: auto;
+		bottom: 0;
+		width: 100%;
+	}
+
 }
 
 
