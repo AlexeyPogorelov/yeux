@@ -4,6 +4,11 @@
 	<meta content="text/html" charset="utf-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 	<title>YEUX - Store of interiors</title>
+
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="theme-color" content="#ffffff">
+
 	<link href="font/font-awesome.css" rel="stylesheet" media="screen">
 	<link href="style.css" rel="stylesheet" media="screen">
 	<link rel="stylesheet" media="screen" href="particles-js.css">
@@ -214,6 +219,7 @@
 			<a href="#"><img src="img/social-fb.png" alt=""></a>
 			<a href="#"><img src="img/social-tw.png" alt=""></a>
 		</div>
+		<a href="http://intertechcompany.com/" class="copyright" target="_blank">© INTERTECH 2015-2016</a>
 	</div>
 </section>
 <div id="cache" class="hidden">

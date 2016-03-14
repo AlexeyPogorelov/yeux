@@ -2023,6 +2023,21 @@ ul ul, ol ul, ul ol, ol ol {
   margin-bottom: 0;
 }
 /*///////////////vtmb//////////////////*/
+
+#footer a.copyright,
+.copyright {
+	line-height: 47px;
+	color: #7F7F7F;
+	margin: 0;
+	margin-right: 20px;
+	float: right;
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+/*@media (max-width: 700px) {
+
+}*/
 @media screen and (max-width: 767px) {
 	section#main,
 	section#intro-1,
@@ -2109,14 +2124,31 @@ ul ul, ol ul, ul ol, ol ol {
 		padding-top: 40px;
 	}
 
+	section#pre-footer h2 {
+		display: none;
+	}
+
 	section#contact {
 		padding: 10px;
 		padding-top: 40px;
+		padding-bottom: 40px;
 	}
 	.scroll-bottom {
 		display: none;
 	}
+	#footer {
+		height: 94px;
+		position: static;
+		padding-top: 8px;
+	}
+	#footer a.copyright,
+	.copyright {
+		display: block;
+		float: none;
+		position: static;
+	}
 }
+
 
 /*/ FONTS /*/
 

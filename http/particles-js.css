@@ -4,6 +4,10 @@
   /*background-color: #000;*/
   /*background-image: url(img/icons/123.png);*/
   opacity: 1;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0);
 
 }
 @keyframes example {
@@ -18,7 +22,7 @@
   top: 0;
   height: 100%;
   width: 100%;
-  background-image: url(img/icons/123.png);
+  background-image: url(img/icons/123.jpg);
   background-position: 0% 0%;
   background-repeat: repeat;
   animation-name: example;
