@@ -2123,6 +2123,10 @@ ul ul, ol ul, ul ol, ol ol {
 		margin-bottom: 20px;
 	}
 
+	section#progress p {
+		text-align: center;
+	}
+
 	section#portfolio {
 		padding-bottom: 110px;
 		padding-top: 40px;
