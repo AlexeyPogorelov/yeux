@@ -803,7 +803,7 @@ var lexPortfolio = {
 				if (id === undefined) {
 					id = this.getIdFromHash();
 				}
-				// if ( isTouchDevice || isTouch ) return;
+				if ( ( isTouchDevice || isTouch ) && resize ) return;
 				var top;
 				if (pagesState.pages[id] === undefined) {
 					top = pagesState.pages[pagesState.pagesCount - 2].top + windowHeight;

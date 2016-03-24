@@ -941,9 +941,7 @@ video {
 	opacity: .5;
 	position: absolute;
 	left: 50%;
-	left: 30%;
-	/*top: 50vh;*/
-	top: 0;
+	top: 50vh;
 	margin-left: -64px;
 	margin-right: -64px;
 	height: 128px;
@@ -2065,13 +2063,13 @@ ul ul, ol ul, ul ol, ol ol {
 	}
 
 	h2 {
-		line-height: 39px;
+		line-height: 1.3em;
 		font-size: 1.5em;
 	}
 
 	section#main h2 {
 		margin-top: 100px;
-		margin-bottom: 5px;
+		margin-bottom: 20px;
 	}
 
 	section#main {
@@ -2085,8 +2083,13 @@ ul ul, ol ul, ul ol, ol ol {
 		padding-bottom: 40px;
 	}
 
+	section#partners p {
+		height: auto;
+		padding-bottom: 40px;
+	}
+
 	section#intro-gallery .image-holder {
-		max-height: 300px;
+		max-height: 120px;
 	}
 
 	section#progress .right {
@@ -2097,7 +2100,7 @@ ul ul, ol ul, ul ol, ol ol {
 		width: 100%;
 		padding-left: 10px;
 		padding-right: 10px;
-		padding-bottom: 110px;
+		padding-bottom: 40px;
 	}
 
 	.vertical-middle > * {
@@ -2115,6 +2118,10 @@ ul ul, ol ul, ul ol, ol ol {
 	section#main .right {
 		margin-bottom: 30px;
 		float: right;
+	}
+
+	section#main p {
+		text-align: right;
 	}
 
 	section#progress .right h2 {
@@ -2159,6 +2166,9 @@ ul ul, ol ul, ul ol, ol ol {
 	section#contact span.info {
 		margin-top: 20px;
 		width: 100%;
+	}
+	section#contact h2 {
+		display: block;
 	}
 
 	section#contact button.button-send {
