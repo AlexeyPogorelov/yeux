@@ -86,7 +86,6 @@
 	<div class="vertical-middle">
 		<div class="logo-main-holder">
 			<img src="img/logo-main.png" alt="" id="logo-main">
-			<!--div id="particles-js" class="particles-js"></div-->
 		</div>
 		<div class="right">
 			<h2>Технологии встречаются с креативом</h2>
@@ -224,12 +223,9 @@
 </section>
 <div id="cache" class="hidden">
 	<div>
-		<!--video id="bgVideo" preload='load' autoplay='true' autoplay loop='loop'>
+		<video id="bgVideo" preload='load' autoplay='true' autoplay loop='loop'>
 			<source src="video/intro.mp4" type="video/mp4">
-		</video-->
-		<!--div id="bgVideo">
-			<div id="particles-js"></div>
-		</div-->
+		</video>
 		<video id="bgSlide-1" preload='load' autoplay='true' autoplay loop='loop'>
 			<source src="video/intro.mp4" type="video/mp4">
 		</video>
