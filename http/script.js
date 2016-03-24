@@ -5,11 +5,11 @@ if (isTouchDevice || isTouch) {
 	$('body').css('overflow', 'auto');
 }
 
-var pagesState = {};
+var pagesState = {},
+	windowWidth = $(window).width(),
+	windowHeight = $(window).height(),
+	cacheDom = {};
 	pagesState.lastScrollTime = new Date().getTime() - 1000;
-var windowWidth = $(window).width();
-var windowHeight = $(window).height();
-var cacheDom = {};
 $(window).load(function(){
 	scrollPages.init();
 	/* pre-loader */
@@ -1210,33 +1210,33 @@ function buttonNext () {
 	scrollPages.nextPage();
 }
 $.fn.animateRotate = function(angle, duration, easing, complete) {
-	var args = $.speed(duration, easing, complete);
-	var step = args.step;
+	var args = $.speed(duration, easing, complete),
+		step = args.step;
 	return this.each(function(i, e) {
 		args.complete = $.proxy(args.complete, e);
 		args.step = function(now) {
-		  $.style(e, 'transform', 'rotate(' + now + 'deg)');
-		  if (step) return step.apply(e, arguments);
+			$.style(e, 'transform', 'rotate(' + now + 'deg)');
+			if (step) return step.apply(e, arguments);
 		};
 		$({deg: 0}).animate({deg: angle}, args);
 	});
 };
 var introAnimation = (function () {
-	var speed = 800;
-	var $bg = $('<div>').addClass('main-intro-animation').append( $('<div>').attr('id', 'particles-js').addClass('particles-js') );
-	var $back = $('<div>').addClass('back').appendTo( $bg );
-	var $wg = $('<div>').addClass('intro1-animation');
-	var $white = $('.pre-loader-main');
-	var $logo = $('.logo-main-holder');
-	var $contentMain = $('section#main .right');
-	var $contentInt1 = $('section#intro-1 .vertical-middle');
-	var $contentInt2 = $('section#intro-2 .vertical-middle');
-	var plg = {
+	var speed = 800,
+		$bg = $('<div>').addClass('main-intro-animation').append( $('<div>').attr('id', 'particles-js').addClass('particles-js') ),
+		$back = $('<div>').addClass('back').appendTo( $bg ),
+		$wg = $('<div>').addClass('intro1-animation'),
+		$white = $('.pre-loader-main'),
+		$logo = $('.logo-main-holder'),
+		$contentMain = $('section#main .right'),
+		$contentInt1 = $('section#intro-1 .vertical-middle'),
+		$contentInt2 = $('section#intro-2 .vertical-middle'),
+		plg = {
 		init: function() {
 			// this.resize();
 			this.createBlock();
-			var hashOnStart = window.location.hash;
-			var regPort = /portfolio=/;
+			var hashOnStart = window.location.hash,
+				regPort = /portfolio=/;
 			if (regPort.test(hashOnStart)) {
 				pagesState.animatedBool = true;
 				$bg.css({'opacity': 0});
