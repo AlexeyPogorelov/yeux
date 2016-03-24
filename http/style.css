@@ -943,11 +943,11 @@ video {
 	left: 50%;
 	top: 50vh;
 	margin-left: -64px;
-	margin-right: -64px;
+	margin-top: -94px;
 	height: 128px;
 	width: 128px;
-  -webkit-animation: rotating-function 1.25s linear infinite;
-          animation: rotating-function 1.25s linear infinite;
+  -webkit-animation: rotating-function 2s linear infinite;
+          animation: rotating-function 2s linear infinite;
           z-index: 5;
 }
 @-webkit-keyframes rotating-function {
@@ -2251,6 +2251,10 @@ ul ul, ol ul, ul ol, ol ol {
 	}
 	section#portfolio .portfolios-holder {
 		width: 100vw !important;
+	}
+	#portfolioLightbox .slides-holder .image-holder .progress .icon {
+		-webkit-background-size: 50%;
+		background-size: 50%;
 	}
 }
 
