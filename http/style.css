@@ -941,7 +941,9 @@ video {
 	opacity: .5;
 	position: absolute;
 	left: 50%;
-	top: 50vh;
+	left: 30%;
+	/*top: 50vh;*/
+	top: 0;
 	margin-left: -64px;
 	margin-right: -64px;
 	height: 128px;
