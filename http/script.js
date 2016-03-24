@@ -445,7 +445,12 @@ var lexSlider = {
 	'header': '#progress .slide-name',
 	'desc': '#progress .slide-desc',
 	'controls': '.controls',
+	'field': '.content-slider',
 	'cls': ['slider-control-diactive', 'slider-control-active'],
+	'touchState': {
+		touchStart: {},
+		touchEnd: {}
+	},
 	init: function (progress) {
 		this.cont = progress;
 		this.defineSlides();
@@ -453,6 +458,7 @@ var lexSlider = {
 		this.buildImages();
 		this.resize();
 		this.createButtons();
+		this.touchEvents();
 		this.toSlide(0);
 	},
 	chacheDom: function () {
@@ -466,6 +472,50 @@ var lexSlider = {
 	defineSlides: function () {
 		this.slidesCount = this.cont.length;
 		this.currentSlide = 0;
+	},
+	touchEvents: function () {
+		this.$slidesHolder.on('touchstart', function (e) {
+
+			lexSlider.touchState.touchStart.timeStamp = e.timeStamp;
+
+		}).on('touchmove', function (e) {
+
+			// e.preventDefault();
+			lexSlider.touchState.touchEnd.xPos = e.originalEvent.touches[0].clientX;
+			lexSlider.touchState.touchEnd.yPos = e.originalEvent.touches[0].clientY;
+
+			if (!lexSlider.touchState.touchStart.xPos) {
+				lexSlider.touchState.touchStart.xPos = lexSlider.touchState.touchEnd.xPos;
+			}
+			if (!lexSlider.touchState.touchStart.yPos) {
+				lexSlider.touchState.touchStart.yPos = lexSlider.touchState.touchEnd.yPos;
+			}
+
+		}).on('touchend touchcancel', function (e) {
+			if (pagesState.animatedBool) {
+				return;
+			}
+			var distance = 70,
+				speed = 200,
+				deltaX = lexSlider.touchState.touchEnd.xPos - lexSlider.touchState.touchStart.xPos,
+				deltaY = lexSlider.touchState.touchEnd.yPos - lexSlider.touchState.touchStart.yPos;
+
+			if (deltaX > distance || deltaX < -distance) {
+				if (deltaX < 0) {
+					lexSlider.nextSlide();
+				} else {
+					lexSlider.prevSlide();
+				}
+			}
+
+			lexSlider.touchState.touchEnd.xPos = null;
+			lexSlider.touchState.touchEnd.yPos = null;
+			lexSlider.touchState.touchStart.xPos = null;
+			lexSlider.touchState.touchStart.yPos = null;
+			deltaX = null;
+			deltaY = null;
+
+		});
 	},
 	buildImages: function () {
 		for (var i = 0; i < this.slidesCount; i++) {
@@ -753,7 +803,7 @@ var lexPortfolio = {
 				if (id === undefined) {
 					id = this.getIdFromHash();
 				}
-				if ( isTouchDevice || isTouch ) return;
+				// if ( isTouchDevice || isTouch ) return;
 				var top;
 				if (pagesState.pages[id] === undefined) {
 					top = pagesState.pages[pagesState.pagesCount - 2].top + windowHeight;
@@ -763,7 +813,7 @@ var lexPortfolio = {
 				}
 				if (pagesState.prevPage === 0 && id === 1 && !pagesState.fx) {
 					introAnimation.oneTwo();
-				} else if (pagesState.prevPage == 1 && id == 2 && !pagesState.fx) {
+				} else if (pagesState.prevPage === 1 && id === 2 && !pagesState.fx) {
 					introAnimation.twoThree();
 				} else if (resize) {
 					pagesState.animatedBool = true;
@@ -912,7 +962,7 @@ var portfolioLightbox = {
 			}
 
 		});
-		this.lightbox.on('touchend', function (e) {
+		this.lightbox.on('touchend touchcancel', function (e) {
 			if (pagesState.animatedBool) {
 				return;
 			}
